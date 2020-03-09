@@ -98,14 +98,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-public class Elevator {
+public class LiftHander {
   
   public int[] goElevatorGo(final int[][] queues, final int CAPACITY) {
     
-    @SuppressWarnings("unused")
-    final int LIFT_MAX_HEIGHT = queues.length;
-    PriorityQueue<Integer> downWardsFlrToVisit = new PriorityQueue<Integer>(Comparator.reverseOrder());
-    PriorityQueue<Integer> upWardsFlrToVisit = new PriorityQueue<Integer>();
+    final PriorityQueue<Integer> downWardsFlrToVisit = new PriorityQueue<Integer>(Comparator.reverseOrder());
+    final PriorityQueue<Integer> upWardsFlrToVisit = new PriorityQueue<Integer>();
     final int GROUND_FLOOR = 0;
     /***
      * start from ground location to upwards
@@ -156,7 +154,7 @@ public class Elevator {
     }
     
     //move back to ground floor is not already.
-    if(liftTraversalOrder.get(liftTraversalOrder.size() - 1) != 0/*!onlyGoingDown && liftTraversalOrder.size() > 1*/) {
+    if(liftTraversalOrder.get(liftTraversalOrder.size() - 1) != 0) {
       liftTraversalOrder.add(0);
     }
     int[] traversalOrder = new int[liftTraversalOrder.size()];
@@ -179,7 +177,7 @@ public class Elevator {
   protected void moveDownWards(final int[][] queues, PriorityQueue<Integer> downWardsFlrToVisit,
                                PriorityQueue<Integer> upWardsFlrToVisit, Lift lift, Integer currentFlr) {
     //check if some one is getting out?
-    clearWhoAlreadyReachedToDestination(lift, currentFlr);
+	  lift.clearWhoAlreadyReachedToDestination( currentFlr);
     
     //check if some one is getting in?
     int[] pplsOnFlr = queues[currentFlr];
@@ -211,8 +209,8 @@ public class Elevator {
           }
         }
       }
-      //Assuming we reached to top floor
-      if(downWardsFlrToVisit.isEmpty() /*&& LIFT_MAX_HEIGHT*/) {
+      //Assuming we reached to ground floor
+      if(downWardsFlrToVisit.isEmpty()) {
         lift.setDirection(DIRECTION.UP);
       }
     }
@@ -232,7 +230,7 @@ public class Elevator {
   protected Integer moveUpWards(final int[][] queues, PriorityQueue<Integer> downWardsFlrToVisit,
                                 PriorityQueue<Integer> upWardsFlrToVisit, Lift lift, Integer currentFlr) {
     //check if some one is getting out?
-    clearWhoAlreadyReachedToDestination(lift, currentFlr);
+    lift.clearWhoAlreadyReachedToDestination(currentFlr);
     
     //check if some one is getting in?
     int[] pplsOnFlr = queues[currentFlr];
@@ -273,22 +271,6 @@ public class Elevator {
     return currentFlr;
   }
   
-  /**
-   * Remove people from list who already reached to destination.
-   * 
-   * @param lift
-   * @param currentFlr
-   */
-  protected void clearWhoAlreadyReachedToDestination(Lift lift, Integer currentFlr) {
-    List<Person> listOfPeopleInsideLift = lift.listOfPeopleInsideLift();
-    for(Iterator<Person> iterator = listOfPeopleInsideLift.iterator(); iterator.hasNext();) {
-      Person person = iterator.next();
-      if(person.outFloor() == currentFlr) {
-        //remove this person from lift 
-        iterator.remove();
-      }
-    }
-  }
   
   /***
    * verify if every person on current floor want to go down only.
@@ -298,12 +280,13 @@ public class Elevator {
    * @return
    */
   protected boolean isEveryOneWantsToGoDown(int currentflr, int[] pplsOnFlr) {
-    boolean status = false;
+    boolean status = true;
     for(int i = 0; i < pplsOnFlr.length; i++) {
       int flrPersonWantToVisit = pplsOnFlr[i];
       // just check if every one wants to go down.
-      if(flrPersonWantToVisit < currentflr) {
-        status = true;
+      if(flrPersonWantToVisit > currentflr) {
+        status = false;
+        return status;
       }
     }
     return status;

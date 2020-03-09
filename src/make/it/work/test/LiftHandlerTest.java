@@ -6,12 +6,12 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import make.it.work.Elevator;
+import make.it.work.LiftHander;
 
 /**
  * Unit test for Elevator assignment.
  */
-public class ElevatorTest {
+public class LiftHandlerTest {
   /**
    * Rigorous Test :-)
    */
@@ -33,7 +33,7 @@ public class ElevatorTest {
                             new int[0], // 5
                             new int[0], // 6
     };
-    final int[] result = new Elevator().goElevatorGo(queues, 5);
+    final int[] result = new LiftHander().goElevatorGo(queues, 5);
     assertArrayEquals(new int[] {0, 2, 5, 0}, result);
   }
   
@@ -47,7 +47,7 @@ public class ElevatorTest {
                             new int[0], // 5
                             new int[0], // 6
     };
-    final int[] result = new Elevator().goElevatorGo(queues, 5);
+    final int[] result = new LiftHander().goElevatorGo(queues, 5);
     assertArrayEquals(new int[] {0, 2, 1, 0}, result);
   }
   
@@ -61,7 +61,7 @@ public class ElevatorTest {
                             new int[0], // 5
                             new int[0], // 6
     };
-    final int[] result = new Elevator().goElevatorGo(queues, 5);
+    final int[] result = new LiftHander().goElevatorGo(queues, 5);
     assertArrayEquals(new int[] {0, 1, 2, 3, 4, 5, 0}, result);
   }
   
@@ -75,7 +75,7 @@ public class ElevatorTest {
                             new int[] {3}, // 5
                             new int[0], // 6
     };
-    final int[] result = new Elevator().goElevatorGo(queues, 5);
+    final int[] result = new LiftHander().goElevatorGo(queues, 5);
     assertArrayEquals(new int[] {0, 5, 4, 3, 2, 1, 0}, result);
   }
   
@@ -89,7 +89,7 @@ public class ElevatorTest {
                             new int[0], // 5
                             new int[0], // 6
     };
-    final int[] result = new Elevator().goElevatorGo(queues, 5);
+    final int[] result = new LiftHander().goElevatorGo(queues, 5);
     assertArrayEquals(new int[] {0, 1, 2, 4, 2, 1, 0}, result);
   }
   
@@ -103,7 +103,7 @@ public class ElevatorTest {
                             new int[0], // 5
                             new int[0], // 6
     };
-    final int[] result = new Elevator().goElevatorGo(queues, 5);
+    final int[] result = new LiftHander().goElevatorGo(queues, 5);
     assertArrayEquals(new int[] {0, 1, 2, 3, 4, 3, 2, 1, 0}, result);
   }
   
@@ -117,7 +117,7 @@ public class ElevatorTest {
                             new int[0], // 5
                             new int[] {1}, // 6
     };
-    final int[] result = new Elevator().goElevatorGo(queues, 5);
+    final int[] result = new LiftHander().goElevatorGo(queues, 5);
     assertArrayEquals(new int[] {0, 1, 2, 3, 4, 5, 6, 4, 2, 1, 0}, result);
   }
   
@@ -131,7 +131,7 @@ public class ElevatorTest {
                             new int[0], // 5
                             new int[0], // 6
     };
-    final int[] result = new Elevator().goElevatorGo(queues, 5);
+    final int[] result = new LiftHander().goElevatorGo(queues, 5);
     assertArrayEquals(new int[] {0, 2, 3, 0}, result);
   }
   

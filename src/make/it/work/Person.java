@@ -5,9 +5,9 @@ package make.it.work;
  */
 public class Person {
   
-  int       inFlr     = -1;
-  int       outFlr    = -1;
-  DIRECTION direction = null;
+  private int       inFlr     = -1;
+  private int       outFlr    = -1;
+  private DIRECTION direction = null;
   
   public Person(int start, int end, DIRECTION currentDirection) {
     this.inFlr = start;
